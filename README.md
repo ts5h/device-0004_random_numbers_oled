@@ -1,2 +1,2 @@
-# random_dots_to_oled (WIP)
-A project to display dots randomly on SSD1306 OLED display using PIC16F1705
+# Random Numbers OLED (WIP)
+A small project to display random numbers on OLED using PIC16F1705
