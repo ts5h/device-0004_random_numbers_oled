@@ -44,6 +44,7 @@
 #include "mcc_generated_files/mcc.h"
 #include <time.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "lib/OLED.h"
 
 
@@ -81,8 +82,7 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     
     // My settings
-    // TODO: generate real random
-    srand((unsigned int) time(NULL));
+    srand((unsigned int) rand()); // Lazy seed to replace time(NULL)
     IO_RC3_SetHigh();
     
     OLED_Init();
