@@ -91,8 +91,8 @@ void main(void)
     __delay_ms(1000);
     
     uint8_t wait = 0;
-    uint8_t i = 0;
-    uint8_t j = 0;
+    int i = 0;
+    int j = 0;
 
     // Maximum number of array: 80
     // Initialize number, current, time
@@ -117,7 +117,7 @@ void main(void)
         OLED_SelectPage(0);
         int tmpNum = 0;
         
-        for (i = 0; i < 64; i++) {
+        for (i = 0; i < sizeof(numbers); i++) {
             for (j = 0; j < 8; j++) {
                 tmpNum = numbers[i];
                 OLED_Data(myASCII[tmpNum][j]);
