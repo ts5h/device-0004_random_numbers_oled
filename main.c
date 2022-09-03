@@ -46,6 +46,8 @@
 #include <stdlib.h>
 #include "lib/OLED.h"
 
+
+
 // Maximum number of array: 80
 // 0-9
 const unsigned char myASCII[][16] = {
@@ -53,14 +55,15 @@ const unsigned char myASCII[][16] = {
     {0b10000010, 0b10000010, 0b10000010, 0b10000010, 0b10000010, 0b10000010, 0b10000010, 0b11111110, 0b10000000, 0b10000000, 0b10000000, 0b10000000, 0b10000000, 0b10000000, 0b10000000, 0b00000000}, // 1
     {0b11110010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10011110, 0b00000000}, // 2
     {0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b11111110, 0b00000000}, // 3
-    {0b00011110, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b11111110, 0b00000000}, // 4
+    {0b00010000, 0b00011000, 0b00010100, 0b00010010, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b00010000, 0b11111110, 0b00000000}, // 4
     
     {0b10011110, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b11110000, 0b00000000}, // 5
     {0b11111110, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b11110010, 0b00000000}, // 6
-    {0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b11111110, 0b00000000}, // 7
+    {0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b00000010, 0b10000010, 0b01000010, 0b00100010, 0b00010010, 0b00001010, 0b00000110, 0b00000010, 0b00000000}, // 7
     {0b11111110, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b11111110, 0b00000000}, // 8
     {0b10011110, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b11111110, 0b00000000}, // 9
 };
+
 
 /*
                          Main application
@@ -80,6 +83,7 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     
     // My settings
+    // TODO: generate real random
     srand((unsigned int) time(NULL));
     IO_RC3_SetHigh();
     
@@ -93,68 +97,60 @@ void main(void)
 
     // number, add/sub, current, time
     uint8_t numbers[32] = {0};
-    uint8_t directions[32] = {0};
     uint8_t currents[32] = {0};
     uint8_t waits[32] = {0};
 
     for (i = 0; i < sizeof(numbers); i++) {
-        wait = rand() % 100 + 1;
+        wait = rand() % 128 + 1;
+        if (rand() % 10 == 1) {
+            wait = rand() % 4 + 1;
+        }
         
         numbers[i] = rand() % 10;
-        directions[i] = rand() % 2;
         currents[i] = wait;
         waits[i] = wait;
     }
 
-    // Loop
+    // Infinity loop
     while (1)
-    {        
-        int tmpNum = 0;
+    {
         OLED_SelectPage(0);
+        int tmpNum = 0;
         
         for (i = 0; i < sizeof(numbers); i++) {
             for (j = 0; j < 16; j++) {
                 tmpNum = numbers[i];
                 OLED_Data(myASCII[tmpNum][j]);
             }
-        }
-        
-        for (i = 0; i < sizeof(numbers); i++) {
-            for (j = 0; j < 16; j++) {
-                tmpNum = numbers[i];
-                OLED_Data(myASCII[tmpNum][j]);
+            
+            // Count down
+            currents[i]--;
+            if (currents[i] == 0) {
+                tmpNum--;
+                
+                if (tmpNum == 0) {
+                    wait = waits[i];
+                    
+                    if (wait > 4) {
+                        wait = rand() % 4 + 1;
+                    } else {
+                        if (rand() % 100 <= 5) {
+                            wait = rand() % 255 + 1;
+                        } else {
+                            wait = rand() % 32 + 1;
+                        }
+                    }
+                    
+                    waits[i] = wait;
+                } else if (tmpNum < 0) {
+                    tmpNum = 9;
+                }
+                
+                currents[i] = waits[i];
             }
+            
+            numbers[i] = tmpNum;
         }
-        
-//        for (i = 0; i < 1024; i++) {
-//            int tmpNum = numbers[i][0] / 10;
-//            uint8_t tmpDirection = numbers[i][0] % 10;
-            
-            
-            
-//            for (j = 0; j < 8; j++) {
-//                // OLED_Data(myASCII[tmpNum][j]);
-//                
-//            }
-            
-//            numbers[i][1]--;
-//            if (numbers[i][1] == 0) {
-//                if (tmpDirection == 1) {
-//                    tmpNum++;
-//                    if (tmpNum > 9) {
-//                        tmpNum = 0;
-//                    }
-//                } else {
-//                    tmpNum--;
-//                    if (tmpNum < 0) {
-//                        tmpNum = 9;
-//                    }
-//                }
-//                
-//                numbers[i][0] = (uint8_t) tmpNum * 10 + tmpDirection;
-//                numbers[i][1] = waits[i];
-//            }
-//        }
     }
 }
 
