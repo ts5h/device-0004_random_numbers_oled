@@ -44,7 +44,6 @@
 #include "mcc_generated_files/mcc.h"
 #include <time.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include "lib/OLED.h"
 
 
@@ -89,7 +88,7 @@ void main(void)
     
     OLED_Init();
     OLED_Clear();
-    __delay_ms(500);
+    __delay_ms(1000);
     
     uint8_t wait = 0;
     int i = 0;
