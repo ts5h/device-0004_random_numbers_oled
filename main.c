@@ -82,7 +82,9 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     
     // My settings
-    srand((unsigned int) rand()); // Lazy seed to replace time(NULL)
+    // Lazy seed to replace time(NULL) because it returns always 0 without RTCC
+    srand((unsigned int) rand());
+    
     IO_RC3_SetHigh();
     
     OLED_Init();
