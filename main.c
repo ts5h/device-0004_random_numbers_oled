@@ -42,7 +42,6 @@
 */
 
 #include "mcc_generated_files/mcc.h"
-#include <time.h>
 #include <stdlib.h>
 #include "lib/OLED.h"
 
@@ -81,7 +80,7 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     
     // My settings
-    // Lazy seed to replace time(NULL) because it returns always 0 without RTCC
+    // Lazy seed to replace from time(NULL) because it returns always 0 without RTCC
     srand((unsigned int) rand());
     
     IO_RC3_SetHigh();
@@ -111,7 +110,7 @@ void main(void)
         waits[i] = wait;
     }
 
-    // Infinity loop
+    // Display and cout down nuberms
     while (1)
     {
         OLED_SelectPage(0);
