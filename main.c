@@ -45,6 +45,7 @@
 #include <stdlib.h>
 #include "lib/OLED.h"
 
+#define NUMBER_OF_ARRAY 64
 
 // 0-9
 const unsigned char myASCII[][8] = {
@@ -84,7 +85,6 @@ void main(void)
     srand((unsigned int) rand());
     
     IO_RC3_SetHigh();
-    
     OLED_Init();
     OLED_Clear();
     __delay_ms(1000);
@@ -92,19 +92,16 @@ void main(void)
     uint8_t wait = 0;
     int i = 0;
     int j = 0;
+    int tmpNum = 0;
 
     // Maximum number of array: 80
     // Initialize number, current, time
-    uint8_t numbers[64] = {0};
-    uint8_t currents[64] = {0};
-    uint8_t waits[64] = {0};
+    uint8_t numbers[NUMBER_OF_ARRAY] = {0};
+    uint8_t currents[NUMBER_OF_ARRAY] = {0};
+    uint8_t waits[NUMBER_OF_ARRAY] = {0};
 
     for (i = 0; i < sizeof(numbers); i++) {
-        wait = rand() % 128 + 1;
-        if (rand() % 10 == 1) {
-            wait = rand() % 4 + 1;
-        }
-        
+        wait = (rand() % 10 == 1) ? rand() % 4 + 1 : rand() % 128 + 1;
         numbers[i] = rand() % 10;
         currents[i] = wait;
         waits[i] = wait;
@@ -113,8 +110,8 @@ void main(void)
     // Display and cout down nuberms
     while (1)
     {
+        tmpNum = 0;
         OLED_SelectPage(0);
-        int tmpNum = 0;
         
         for (i = 0; i < sizeof(numbers); i++) {
             for (j = 0; j < 8; j++) {
