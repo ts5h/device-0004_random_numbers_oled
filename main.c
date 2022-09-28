@@ -84,10 +84,11 @@ void main(void)
     // Lazy seed to replace from time(NULL) because it returns always 0 without RTCC
     srand((unsigned int) rand());
     
-    IO_RC3_SetHigh();
     OLED_Init();
     OLED_Clear();
+    
     __delay_ms(1000);
+    IO_RC3_SetHigh();
     
     uint8_t wait = 0;
     int i = 0;
@@ -107,7 +108,7 @@ void main(void)
         waits[i] = wait;
     }
 
-    // Display and cout down nuberms
+    // Display and count down numbers
     while (1)
     {
         tmpNum = 0;
