@@ -48,8 +48,8 @@
 
 // CONFIG1
 #pragma config FOSC = INTOSC    // Oscillator Selection Bits->INTOSC oscillator: I/O function on CLKIN pin
-#pragma config WDTE = OFF    // Watchdog Timer Enable->WDT disabled
-#pragma config PWRTE = OFF    // Power-up Timer Enable->PWRT disabled
+#pragma config WDTE = ON    // Watchdog Timer Enable->WDT enabled
+#pragma config PWRTE = ON    // Power-up Timer Enable->PWRT enabled
 #pragma config MCLRE = ON    // MCLR Pin Function Select->MCLR/VPP pin function is MCLR
 #pragma config CP = OFF    // Flash Program Memory Code Protection->Program memory code protection is disabled
 #pragma config BOREN = ON    // Brown-out Reset Enable->Brown-out Reset enabled
@@ -63,6 +63,6 @@
 #pragma config ZCDDIS = ON    // Zero-cross detect disable->Zero-cross detect circuit is disabled at POR
 #pragma config PLLEN = OFF    // Phase Lock Loop enable->4x PLL is enabled when software sets the SPLLEN bit
 #pragma config STVREN = ON    // Stack Overflow/Underflow Reset Enable->Stack Overflow or Underflow will cause a Reset
-#pragma config BORV = LO    // Brown-out Reset Voltage Selection->Brown-out Reset Voltage (Vbor), low trip point selected.
+#pragma config BORV = HI    // Brown-out Reset Voltage Selection->Brown-out Reset Voltage (Vbor), high trip point selected.
 #pragma config LPBOR = OFF    // Low-Power Brown Out Reset->Low-Power BOR is disabled
 #pragma config LVP = OFF    // Low-Voltage Programming Enable->High-voltage on MCLR/VPP must be used for programming

@@ -58,8 +58,8 @@ void SYSTEM_Initialize(void)
 
 void OSCILLATOR_Initialize(void)
 {
-    // SCS INTOSC; SPLLEN disabled; IRCF 16MHz_HF; 
-    OSCCON = 0x7A;
+    // SCS INTOSC; SPLLEN disabled; IRCF 4MHz_HF; 
+    OSCCON = 0x6A;
     // SOSCR disabled; 
     OSCSTAT = 0x00;
     // TUN 0; 
@@ -70,8 +70,8 @@ void OSCILLATOR_Initialize(void)
 
 void WDT_Initialize(void)
 {
-    // WDTPS 1:65536; SWDTEN OFF; 
-    WDTCON = 0x16;
+    // WDTPS 1:131072; SWDTEN OFF; 
+    WDTCON = 0x18;
 }
 
 /**
