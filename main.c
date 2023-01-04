@@ -104,7 +104,7 @@ void main(void)
     uint8_t waits[NUMBER_OF_ARRAY] = {0};
 
     for (i = 0; i < sizeof(numbers); i++) {
-        wait = (rand() % 10 == 1) ? rand() % 4 + 1 : rand() % 128 + 1;
+        wait = (rand() % 10 == 1) ? rand() % 4 + 1 : rand() % 92 + 1;
         numbers[i] = rand() % 10;
         currents[i] = wait;
         waits[i] = wait;
@@ -133,10 +133,14 @@ void main(void)
                     if (wait > 4) {
                         wait = rand() % 4 + 1;
                     } else {
-                        if (rand() % 100 <= 5) {
+                        uint8_t randNum = rand() % 100;
+                        
+                        if (rand() % 100 <= 1) {
                             wait = rand() % 255 + 1;
+                        } else if (rand() % 100 <= 5) {
+                            wait = rand() % 192 + 1;
                         } else {
-                            wait = rand() % 32 + 1;
+                            wait = rand() % 24 + 1;
                         }
                     }
                     
@@ -148,7 +152,7 @@ void main(void)
                 currents[i] = waits[i];
             }
             
-            numbers[i] = tmpNum;
+            numbers[i] = (uint8_t) tmpNum;
         }
     }
 }
