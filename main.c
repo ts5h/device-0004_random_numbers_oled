@@ -85,12 +85,12 @@ void main(void)
     srand((unsigned int) rand());
     
     __delay_ms(1000);
-    IO_RC3_SetHigh();
     
     OLED_Init();
     OLED_Clear();
     
     __delay_ms(1000);
+    IO_RC3_SetHigh();
     
     uint8_t wait = 0;
     int i = 0;
