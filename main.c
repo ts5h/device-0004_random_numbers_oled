@@ -89,7 +89,7 @@ void main(void)
     OLED_Init();
     OLED_Clear();
     
-    __delay_ms(1000);
+    __delay_ms(500);
     IO_RC3_SetHigh();
     
     uint8_t wait = 0;
@@ -104,7 +104,7 @@ void main(void)
     uint8_t waits[NUMBER_OF_ARRAY] = {0};
 
     for (i = 0; i < sizeof(numbers); i++) {
-        wait = (rand() % 10 == 1) ? rand() % 4 + 1 : rand() % 92 + 1;
+        wait = (rand() % 10 == 1) ? rand() % 4 + 1 : rand() % 96 + 1;
         numbers[i] = rand() % 10;
         currents[i] = wait;
         waits[i] = wait;
@@ -135,12 +135,12 @@ void main(void)
                     } else {
                         uint8_t randNum = rand() % 100;
                         
-                        if (rand() % 100 <= 1) {
+                        if (randNum <= 1) {
                             wait = rand() % 255 + 1;
-                        } else if (rand() % 100 <= 5) {
+                        } else if (randNum <= 5) {
                             wait = rand() % 192 + 1;
                         } else {
-                            wait = rand() % 24 + 1;
+                            wait = rand() % 32 + 1;
                         }
                     }
                     
