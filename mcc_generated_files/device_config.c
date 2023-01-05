@@ -47,7 +47,7 @@
 // Configuration bits: selected in the GUI
 
 // CONFIG1
-#pragma config FOSC = XT    // Oscillator Selection Bits->XT Oscillator, Crystal/resonator connected between OSC1 and OSC2 pins
+#pragma config FOSC = HS    // Oscillator Selection Bits->HS Oscillator, High-speed crystal/resonator connected between OSC1 and OSC2 pins
 #pragma config WDTE = OFF    // Watchdog Timer Enable->WDT disabled
 #pragma config PWRTE = ON    // Power-up Timer Enable->PWRT enabled
 #pragma config MCLRE = ON    // MCLR Pin Function Select->MCLR/VPP pin function is MCLR

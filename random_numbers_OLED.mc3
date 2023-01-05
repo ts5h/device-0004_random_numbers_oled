@@ -44,7 +44,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="INTERNAL OSCILLATOR" name="CustomFOSC"/>
-         <value>XT Oscillator, Crystal/resonator connected between OSC1 and OSC2 pins</value>
+         <value>HS Oscillator, High-speed crystal/resonator connected between OSC1 and OSC2 pins</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="INTERNAL OSCILLATOR" name="CustomHardwarePll"/>
@@ -3248,7 +3248,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="System Module" registerAlias="CONFIG1"/>
-         <value>2241</value>
+         <value>2242</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="System Module" registerAlias="CONFIG2"/>
@@ -3272,7 +3272,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="System Module" registerAlias="CONFIG1" settingAlias="FOSC"/>
-         <value>XT</value>
+         <value>HS</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="System Module" registerAlias="CONFIG1" settingAlias="IESO"/>
@@ -3446,15 +3446,15 @@
       </entry>
       <entry>
          <file>mcc_generated_files\device_config.c</file>
-         <hash>d7a1d1f73e0f857d64b0c34c1016494cb84920e30de493606e0894c813ee550a</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\i2c_master.h</file>
-         <hash>c6d665d2cce7cc8979183a9096eb91d915dd27578339e51c871bbf206f77192f</hash>
+         <hash>df784cc3458ac59e3d962dd306f29a00289401e4a2c34ffe649c61a85b92e73d</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\pin_manager.h</file>
          <hash>2d9db83bc3628516a27e6da0acfc121729781f250a293342f139f2ab4cfef251</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\i2c_master.h</file>
+         <hash>c6d665d2cce7cc8979183a9096eb91d915dd27578339e51c871bbf206f77192f</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\pin_manager.c</file>
