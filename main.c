@@ -89,7 +89,7 @@ void main(void)
     OLED_Init();
     OLED_Clear();
     
-    __delay_ms(500);
+    __delay_ms(1000);
     IO_RC3_SetHigh();
     
     uint8_t wait = 0;
