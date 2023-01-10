@@ -67,20 +67,21 @@ uint8_t getNewWaitTime (uint8_t wait) {
     uint8_t newWait = 0;
     
     if (wait > 4) {
-        newWait = rand() % 4 + 1;
+        newWait = rand() % 4;
     } else {
         uint8_t randNum = rand() % 100;
         
-        if (randNum <= 1) {
-            newWait = rand() % 255 + 1;
-        } else if (randNum <= 5) {
-            newWait = rand() % 192 + 1;
+        if (randNum == 0) {
+            newWait = rand() % 255;
+        } else if (randNum < 5) {
+            newWait = rand() % 192;
         } else {
-            newWait = rand() % 32 + 1;
+            newWait = rand() % 32;
         }
-        
-        return newWait;
     }
+    
+    newWait += 1;
+    return newWait;
 }
 
 
