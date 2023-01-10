@@ -60,7 +60,28 @@ const unsigned char myASCII[][8] = {
     {0b00000010, 0b00000010, 0b00000010, 0b11110010, 0b00001010, 0b00000110, 0b00000010, 0b00000000}, // 7
     {0b11111110, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b11111110, 0b00000000}, // 8
     {0b10011110, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b10010010, 0b11111110, 0b00000000}, // 9
+    {0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000}, // " "
 };
+
+uint8_t getNewWaitTime (uint8_t wait) {
+    uint8_t newWait = 0;
+    
+    if (wait > 4) {
+        newWait = rand() % 4 + 1;
+    } else {
+        uint8_t randNum = rand() % 100;
+        
+        if (randNum <= 1) {
+            newWait = rand() % 255 + 1;
+        } else if (randNum <= 5) {
+            newWait = rand() % 192 + 1;
+        } else {
+            newWait = rand() % 32 + 1;
+        }
+        
+        return newWait;
+    }
+}
 
 
 /*
@@ -122,29 +143,12 @@ void main(void)
                 OLED_Data(myASCII[tmpNum][j]);
             }
             
-            // Count down
             currents[i]--;
             if (currents[i] <= 0) {
                 tmpNum--;
                 
                 if (tmpNum == 0) {
-                    wait = waits[i];
-                    
-                    if (wait > 4) {
-                        wait = rand() % 4 + 1;
-                    } else {
-                        uint8_t randNum = rand() % 100;
-                        
-                        if (randNum <= 1) {
-                            wait = rand() % 255 + 1;
-                        } else if (randNum <= 5) {
-                            wait = rand() % 192 + 1;
-                        } else {
-                            wait = rand() % 32 + 1;
-                        }
-                    }
-                    
-                    waits[i] = wait;
+                    waits[i] = getNewWaitTime(waits[i]);
                 } else if (tmpNum < 0) {
                     tmpNum = 9;
                 }
