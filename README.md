@@ -1,4 +1,4 @@
-# Random Numbers OLED (WIP)
+# Device-0004 / Random Numbers OLED (WIP)
 A project for displaying random numbers on an OLED screen using PIC16F1705.
 
 
