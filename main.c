@@ -102,6 +102,8 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();
     
     // My settings
+    TMR2_StopTimer();
+    
     // Lazy seed to replace from time(NULL) because it returns always 0 without RTCC
     srand((unsigned int) rand());
     
@@ -111,7 +113,7 @@ void main(void)
     OLED_Clear();
     
     __delay_ms(1000);
-    IO_RC3_SetHigh();
+    TMR2_StartTimer();
     
     uint8_t wait = 0;
     int i = 0;

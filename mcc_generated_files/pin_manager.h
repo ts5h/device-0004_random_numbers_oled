@@ -89,25 +89,17 @@
 #define RC1_SetAnalogMode()         do { ANSELCbits.ANSC1 = 1; } while(0)
 #define RC1_SetDigitalMode()        do { ANSELCbits.ANSC1 = 0; } while(0)
 
-// get/set IO_RC3 aliases
-#define IO_RC3_TRIS                 TRISCbits.TRISC3
-#define IO_RC3_LAT                  LATCbits.LATC3
-#define IO_RC3_PORT                 PORTCbits.RC3
-#define IO_RC3_WPU                  WPUCbits.WPUC3
-#define IO_RC3_OD                   ODCONCbits.ODC3
-#define IO_RC3_ANS                  ANSELCbits.ANSC3
-#define IO_RC3_SetHigh()            do { LATCbits.LATC3 = 1; } while(0)
-#define IO_RC3_SetLow()             do { LATCbits.LATC3 = 0; } while(0)
-#define IO_RC3_Toggle()             do { LATCbits.LATC3 = ~LATCbits.LATC3; } while(0)
-#define IO_RC3_GetValue()           PORTCbits.RC3
-#define IO_RC3_SetDigitalInput()    do { TRISCbits.TRISC3 = 1; } while(0)
-#define IO_RC3_SetDigitalOutput()   do { TRISCbits.TRISC3 = 0; } while(0)
-#define IO_RC3_SetPullup()          do { WPUCbits.WPUC3 = 1; } while(0)
-#define IO_RC3_ResetPullup()        do { WPUCbits.WPUC3 = 0; } while(0)
-#define IO_RC3_SetPushPull()        do { ODCONCbits.ODC3 = 0; } while(0)
-#define IO_RC3_SetOpenDrain()       do { ODCONCbits.ODC3 = 1; } while(0)
-#define IO_RC3_SetAnalogMode()      do { ANSELCbits.ANSC3 = 1; } while(0)
-#define IO_RC3_SetDigitalMode()     do { ANSELCbits.ANSC3 = 0; } while(0)
+// get/set RC3 procedures
+#define RC3_SetHigh()            do { LATCbits.LATC3 = 1; } while(0)
+#define RC3_SetLow()             do { LATCbits.LATC3 = 0; } while(0)
+#define RC3_Toggle()             do { LATCbits.LATC3 = ~LATCbits.LATC3; } while(0)
+#define RC3_GetValue()              PORTCbits.RC3
+#define RC3_SetDigitalInput()    do { TRISCbits.TRISC3 = 1; } while(0)
+#define RC3_SetDigitalOutput()   do { TRISCbits.TRISC3 = 0; } while(0)
+#define RC3_SetPullup()             do { WPUCbits.WPUC3 = 1; } while(0)
+#define RC3_ResetPullup()           do { WPUCbits.WPUC3 = 0; } while(0)
+#define RC3_SetAnalogMode()         do { ANSELCbits.ANSC3 = 1; } while(0)
+#define RC3_SetDigitalMode()        do { ANSELCbits.ANSC3 = 0; } while(0)
 
 /**
    @Param
