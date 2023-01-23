@@ -55,7 +55,7 @@
   Section: Macro Declarations
 */
 
-#define PWM1_INITIALIZE_DUTY_VALUE    204
+#define PWM1_INITIALIZE_DUTY_VALUE    255
 
 /**
   Section: PWM Module APIs
@@ -65,11 +65,11 @@ void PWM1_Initialize(void)
 {
     // Set the PWM1 to the options selected in the User Interface
 	
-	// CCP1M PWM; DC1B 0; 
-	CCP1CON = 0x0C;    
+	// CCP1M PWM; DC1B 3; 
+	CCP1CON = 0x3C;    
 	
-	// CCPR1L 51; 
-	CCPR1L = 0x33;    
+	// CCPR1L 63; 
+	CCPR1L = 0x3F;    
 	
 	// CCPR1H 0; 
 	CCPR1H = 0x00;    
