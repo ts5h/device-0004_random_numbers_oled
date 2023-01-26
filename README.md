@@ -8,6 +8,6 @@ https://user-images.githubusercontent.com/1344010/188574856-55ced726-761b-4056-8
 ![image](./docs/schematic.png)
 
 ## License
-MIT License
+[MIT License](./LICENSE)
 
 
